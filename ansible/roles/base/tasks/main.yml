@@ -1,0 +1,44 @@
+---
+- name: Ensure Hosts File
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ item.ip }} {{ item.name }}"
+  with_items:
+    - { ip: "192.168.1.181", name: "vm1" }
+    - { ip: "192.168.1.182", name: "vm2" }
+    - { ip: "192.168.1.183", name: "vm3" }
+    - { ip: "192.168.1.184", name: "vm4" }
+    - { ip: "192.168.1.185", name: "vm5" }
+
+- name: Ensure Docker Repository
+  become: yes
+  apt_repository:
+    repo: 'deb https://download.docker.com/linux/ubuntu xenial stable'
+    state: present
+    update_cache: yes
+  tags:
+    - ubuntu
+
+- name: Ensure Docker
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    allow_unauthenticated: yes
+  with_items:
+    - apt-transport-https
+    - docker-ce
+  tags:
+    - docker
+
+- name: Ensure Docker Group
+  group:
+    name: docker
+    state: present
+
+- name: Ensure User in Docker Group
+  user:
+    name=ubuntu
+    groups=docker
+    append=yes
