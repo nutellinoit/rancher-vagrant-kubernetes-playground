@@ -5,6 +5,7 @@ metadata:
   name: glusterfs
   labels:
     glusterfs: daemonset
+    io.rancher.container.dns.priority: none
   annotations:
     description: GlusterFS DaemonSet
     tags: glusterfs
@@ -15,6 +16,7 @@ spec:
       labels:
         glusterfs: pod
         glusterfs-node: pod
+        io.rancher.container.dns.priority: none
     spec:
       nodeSelector:
         storagenode: glusterfs
