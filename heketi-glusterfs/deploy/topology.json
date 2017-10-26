@@ -15,9 +15,7 @@
             "zone": 1
           },
           "devices": [
-            "/dev/vdb",
-            "/dev/vdc",
-            "/dev/vdd"
+            "/dev/sdb"
           ]
         },
         {
@@ -33,9 +31,7 @@
             "zone": 1
           },
           "devices": [
-            "/dev/vdb",
-            "/dev/vdc",
-            "/dev/vdd"
+            "/dev/sdb"
           ]
         },
         {
@@ -51,9 +47,7 @@
             "zone": 1
           },
           "devices": [
-            "/dev/vdb",
-            "/dev/vdc",
-            "/dev/vdd"
+            "/dev/sdb"
           ]
         }
 
