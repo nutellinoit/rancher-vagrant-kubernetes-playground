@@ -1,4 +1,0 @@
----
-- name: Install docker 1.12
-  become: yes
-  shell: curl https://releases.rancher.com/install-docker/1.12.sh | sh

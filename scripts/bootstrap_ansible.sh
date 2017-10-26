@@ -17,10 +17,11 @@
 
 set -e
 
-echo "Installing Ansible..."
+echo "Instaling docker and glusterfs-client..."
 apt-get update -y
 apt-get install -y software-properties-common
 apt-add-repository ppa:ansible/ansible
 apt-get update
-apt-get install -y ansible apt-transport-https curl
+apt-get install -y ansible apt-transport-https curl glusterfs-client
+curl https://releases.rancher.com/install-docker/1.12.sh | sh
 
