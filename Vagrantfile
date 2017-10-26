@@ -15,6 +15,8 @@ Vagrant.configure(2) do |config|
         vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 5, '--device', 0, '--type', 'hdd', '--medium', second_disk]
       end
 
+
+
       s.vm.box = "bento/ubuntu-16.04"
       s.vm.hostname = "vm#{i}"
       s.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
