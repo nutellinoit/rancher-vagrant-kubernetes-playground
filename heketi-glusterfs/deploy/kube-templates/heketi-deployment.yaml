@@ -6,6 +6,7 @@ metadata:
   labels:
     glusterfs: heketi-service
     heketi: service
+    io.rancher.container.dns.priority: none
   annotations:
     description: Exposes Heketi Service
 spec:
@@ -21,6 +22,7 @@ apiVersion: extensions/v1beta1
 metadata:
   name: heketi
   labels:
+    io.rancher.container.dns.priority: none
     glusterfs: heketi-deployment
     heketi: deployment
   annotations:
@@ -33,6 +35,7 @@ spec:
       labels:
         glusterfs: heketi-pod
         heketi: pod
+        io.rancher.container.dns.priority: none
     spec:
       serviceAccountName: heketi-service-account
       containers:

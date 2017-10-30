@@ -24,4 +24,4 @@ apt-add-repository ppa:ansible/ansible
 apt-get update
 apt-get install -y ansible apt-transport-https curl glusterfs-client
 curl https://releases.rancher.com/install-docker/1.12.sh | sh
-
+modprobe dm_thin_pool
