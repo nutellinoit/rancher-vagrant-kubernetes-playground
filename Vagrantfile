@@ -7,16 +7,6 @@ Vagrant.configure(2) do |config|
 
     config.vm.define "vm#{i}" do |s|
       #s.ssh.forward_agent = true
-      config.vm.provider "virtualbox" do |vb|
-        second_disk = "vm#{i}disk2.vdi"
-        unless File.exist?(second_disk)
-          vb.customize ['createhd', '--filename', second_disk, '--format', 'VDI', '--size', 10 * 1024]
-        end
-        vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 5, '--device', 0, '--type', 'hdd', '--medium', second_disk]
-      end
-
-
-
       s.vm.box = "bento/ubuntu-16.04"
       s.vm.hostname = "vm#{i}"
       s.vm.provision :shell, path: "scripts/bootstrap.sh"
@@ -26,6 +16,11 @@ Vagrant.configure(2) do |config|
         v.name = "vm#{i}"
         v.memory = 2048
         v.gui = false
+        unless File.exist?("vm#{i}disk2.vdi")
+          v.customize ['createhd', '--filename', "vm#{i}disk2.vdi", '--format', 'VDI', '--size', 10 * 1024]
+        end
+        v.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 5, '--device', 0, '--type', 'hdd', '--medium', "vm#{i}disk2.vdi"]
+
       end
     end
 
